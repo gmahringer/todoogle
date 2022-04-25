@@ -19,11 +19,22 @@
                     justify-content-center align-items-center
                     text-light h3">
 
-            <input [(ngModel)]="newTask" type="text"
+            <input [(ngModel)]="object1.taskDescription" type="text"
                    value="" class="col-7 form-control"
                    style="width:300px;">
 
+            <input [(ngModel)]="object1.startDate" type="date"
+                   value="" class="col-7 form-control"
+                   style="width:150px;">
+
+            <input [(ngModel)]="object1.endDate" type="date"
+                   value="" class="col-7 form-control"
+                   style="width:150px;">
+
             <div class="col-1"></div>
+
+            <div>{{object1.taskDescription}}</div>
+            <div>{{object1.endDate}}</div>
 
             <button (click)="addToList()"
                     class="btn btn-light text-success">
@@ -35,7 +46,11 @@
     </div>
 
 
+
+
+
     <div *ngFor="let x of items; let index = index;"
+
          class="row mt-1" style="height:100px;">
 
         <div class="col-3 d-none col-md-3 d-md-block"></div>
@@ -52,4 +67,18 @@
 
         <div class="col-3 d-none col-md-3 d-md-block"></div>
     </div>
+
+    <head>
+        <meta charset="utf-8" />
+        <title>JavaScript print array</title>
+    </head>
+
+    <body>
+    <pre id="arrPrint"></pre>
+    <script>
+        let arr = [{name: "Jack"}, {name: "John"}, {name: "James"}];
+        document.getElementById("arrPrint").innerHTML = JSON.stringify(arr, null, 2);
+    </script>
+    </body>
+
 </div>
