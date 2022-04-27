@@ -1,84 +1,11 @@
-<style>
-    .row {
-        background-color: #286aab;
-    }
-</style>
-
-<div class="container-fluid">
-    <div class="row justify-content-center
-            align-items-center" style="height:80px">
-        <div class="col-3"></div>
-        <div class="col-6 text-light h2">
-            ToDoogle
-        </div>
-    </div>
-
-    <div class="row mt-1" style="height:80px;">
-        <div class="col-3 d-none col-md-3 d-md-block"></div>
-        <div class="col-12 col-md-6 bg-success d-flex
-                    justify-content-center align-items-center
-                    text-light h3">
-
-            <input [(ngModel)]="object1.taskDescription" type="text"
-                   value="" class="col-7 form-control"
-                   style="width:300px;">
-
-            <input [(ngModel)]="object1.startDate" type="date"
-                   value="" class="col-7 form-control"
-                   style="width:150px;">
-
-            <input [(ngModel)]="object1.endDate" type="date"
-                   value="" class="col-7 form-control"
-                   style="width:150px;">
-
-            <div class="col-1"></div>
-
-            <div>{{object1.taskDescription}}</div>
-            <div>{{object1.endDate}}</div>
-
-            <button (click)="addToList()"
-                    class="btn btn-light text-success">
-                ADD TASK
-            </button>
-        </div>
-
-        <div class="col-3 d-none col-md-3 d-md-block"></div>
-    </div>
-
-
-
-
-
-    <div *ngFor="let x of items; let index = index;"
-
-         class="row mt-1" style="height:100px;">
-
-        <div class="col-3 d-none col-md-3 d-md-block"></div>
-
-        <div class="col-12 col-md-6 bg-success d-flex
-                    justify-content-center align-items-center
-                    text-light h3">
-
-            <div class="col-9 text-light h3">{{x}}</div>
-
-            <input (click)="deleteTask(index)" type="button"
-                   value="Delete" class="col-2 btn btn-danger">
-        </div>
-
-        <div class="col-3 d-none col-md-3 d-md-block"></div>
-    </div>
-
-    <head>
-        <meta charset="utf-8" />
-        <title>JavaScript print array</title>
-    </head>
-
-    <body>
-    <pre id="arrPrint"></pre>
-    <script>
-        let arr = [{name: "Jack"}, {name: "John"}, {name: "James"}];
-        document.getElementById("arrPrint").innerHTML = JSON.stringify(arr, null, 2);
-    </script>
-    </body>
-
+<h2>Todos</h2>
+<div class="addItem">
+    New todo: <input type="text" [(ngModel)]="description"> <input type="date" [(ngModel)]="dueDate"> <button (click)="addTodo(description, dueDate)">Add</button>
 </div>
+
+<div *ngFor="let item of getTodos()">
+    <span><b>Todo: </b>{{ item.description }} <b>Created: </b>{{ item.creationDate | date:'dd.MM.YY' }} <b>Due date: </b>{{ item.dueDate | date:'dd.MM.YY' }}</span>
+    <button (click)="deleteTodo(item.id)">Delete</button>
+</div>
+
+

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Todo} from "./todo";
 
 @Component({
   selector: 'app-todo',
@@ -12,43 +13,32 @@ export class TodoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public description = '';
+  public dueDate = new Date();
+  public items: Todo[] = [];
 
-  /* An empty array that is responsible
-  to add a division */
-  public items = [];
-
-  /* A two-way binding performed which
-     pushes text on division */
-  public newTask;
-  public description;
-
-  public object1 = {
-    taskDescription: 'taskDescription',
-    startDate: Date.now(),
-    endDate: Date.now()
-  };
-
-
-
-  /* When input is empty, it will
-     not create a new division */
-  public addToList() {
-    if (this.object1 == null) {
-    }
-    else {
-      this.items.push(this.object1);
-      console.log(this.items);
-      this.object1 = null;
-    }
-
+  public getTodos(): Todo[] {
+    return this.items;
   }
 
-
-
-  /* This function takes to input the
-     task, that has to be deleted*/
-  public deleteTask(index) {
-    this.items.splice(index, 1);
+  public addTodo(description: string, dueDate: Date): void {
+    if (this.description && this.dueDate) {
+      let id = 0;
+      if (this.items.length) {
+        id = Math.max(...this.items.map(t => t.id)) + 1;
+      }
+      this.items.push({ id: id, description: description, dueDate: dueDate, creationDate: new Date() });
+      this.description = '';
+      this.dueDate = new Date();
+    }
   }
+
+  public deleteTodo(id: number): void {
+    const index = this.items.findIndex(t => t.id === id);
+    if (index >= 0) {
+      this.items.splice(index, 1);
+    }
+  }
+
 
 }
