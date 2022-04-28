@@ -1,0 +1,6 @@
+<h1>{{ isSignedIn ? "Signed in!" : "Signed out :(" }}</h1>
+
+<button *ngIf="isSignedIn" (click)="handleSignoutClick()">Sign Out</button>
+<button *ngIf="!isSignedIn" (click)="handleAuthClick()">Sign In</button>
+
+<pre>{{ pre }}</pre>
