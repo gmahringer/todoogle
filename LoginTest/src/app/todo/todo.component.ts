@@ -14,6 +14,7 @@ export class TodoComponent implements OnInit {
   }
 
   public description = '';
+  public startDate = new Date();
   public dueDate = new Date();
   public items: Todo[] = [];
 
@@ -21,14 +22,15 @@ export class TodoComponent implements OnInit {
     return this.items;
   }
 
-  public addTodo(description: string, dueDate: Date): void {
+  public addTodo(description: string, startDate: Date, dueDate: Date): void {
     if (this.description && this.dueDate) {
       let id = 0;
       if (this.items.length) {
         id = Math.max(...this.items.map(t => t.id)) + 1;
       }
-      this.items.push({ id: id, description: description, dueDate: dueDate, creationDate: new Date() });
+      this.items.push({ id: id, description: description, startDate: startDate, dueDate: dueDate, creationDate: new Date() });
       this.description = '';
+      this.startDate = new Date();
       this.dueDate = new Date();
     }
   }
