@@ -1,10 +1,14 @@
 <h2>Todos</h2>
 <div class="addItem">
-    New todo: <input type="text" [(ngModel)]="description"> <input type="date" [(ngModel)]="startDate"> <input type="date" [(ngModel)]="dueDate">  <button (click)="addTodo(description, startDate, dueDate)">Add</button>
+    New todo: <input type="text" [(ngModel)]="title">
+    description: <input type="text" [(ngModel)]="description">
+    from: <input type="datetime-local" [(ngModel)]="startDate">
+    to: <input type="datetime-local" [(ngModel)]="dueDate">
+    <button (click)="addTodo(title,description, startDate, dueDate)">Add</button>
 </div>
 
 <div *ngFor="let item of getTodos()">
-    <span><b>Todo: </b>{{ item.description }} <b>Created: </b>{{ item.creationDate | date:'dd.MM.YY' }} <b>Start date: </b>{{ item.startDate | date:'dd.MM.YY' }} <b>Due date: </b>{{ item.dueDate | date:'dd.MM.YY' }}</span>
+    <span><b>Todo: </b>{{ item.title}} <b>Description: </b>{{ item.description }} <b>Created: </b>{{ item.creationDate | date:'dd.MM.YY' }} <b>Start date: </b>{{ item.startDate }} <b>Due date: </b>{{ item.dueDate}}</span>
     <button (click)="deleteTodo(item.id)">Delete</button>
 </div>
 

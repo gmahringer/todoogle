@@ -1,4 +1,6 @@
 import {Component, NgZone, OnInit} from '@angular/core';
+import {calendar_v3} from "@googleapis/calendar";
+
 
 @Component({
   selector: 'app-google-calendar-integration',
@@ -9,6 +11,10 @@ import {Component, NgZone, OnInit} from '@angular/core';
 export class GoogleCalendarIntegrationComponent implements OnInit {
   isSignedIn = false;
   pre = '';
+  description: String;
+  title: String;
+  startDate: String;
+  dueDate: String;
 
   constructor(private zone: NgZone) {}
 
@@ -22,7 +28,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
           discoveryDocs: [
             'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest',
           ],
-          scope: 'https://www.googleapis.com/auth/calendar.readonly',
+          scope: 'https://www.googleapis.com/auth/calendar',
         })
         .then(() => {
           this.zone.run(() => {
@@ -48,6 +54,33 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
 
   handleSignoutClick() {
     gapi.auth2.getAuthInstance().signOut();
+  }
+
+
+  static addEvent(title,description,startDate, dueDate) {
+    startDate = startDate.toString() + ':00+01:00'
+    dueDate = dueDate.toString() + ':00+01:00'
+    let event: calendar_v3.Schema$Event = {
+      summary: title,
+      description: description,
+      start: {
+        dateTime: startDate,
+        timeZone: 'Europe/Vienna'
+      },
+      end: {
+        dateTime: dueDate,
+        timeZone: 'Europe/Vienna'
+      },
+    }
+
+    let request = gapi.client['calendar'].events.insert({
+      calendarId: 'primary',
+      resource: event
+    });
+
+    request.execute(function(event) {
+
+    });
   }
 
   listUpcomingEvents() {
@@ -99,5 +132,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
     await this.loadGapi();
     gapi.load('client:auth2', this.initClient.bind(this));
   }
+
+
 }
 

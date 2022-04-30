@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Todo} from "./todo";
+import {GoogleCalendarIntegrationComponent} from "../google-calendar-integration/google-calendar-integration.component";
 
 @Component({
   selector: 'app-todo',
@@ -13,6 +14,7 @@ export class TodoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public title ='';
   public description = '';
   public startDate = new Date();
   public dueDate = new Date();
@@ -22,15 +24,17 @@ export class TodoComponent implements OnInit {
     return this.items;
   }
 
-  public addTodo(description: string, startDate: Date, dueDate: Date): void {
+  public addTodo(title: string,description: string, startDate: Date, dueDate: Date): void {
     if (this.description && this.dueDate) {
       let id = 0;
       if (this.items.length) {
         id = Math.max(...this.items.map(t => t.id)) + 1;
       }
-      this.items.push({ id: id, description: description, startDate: startDate, dueDate: dueDate, creationDate: new Date() });
+      GoogleCalendarIntegrationComponent.addEvent(title,description,startDate,dueDate);
+      this.items.push({ id: id,title:title, description: description, startDate: startDate, dueDate: dueDate, creationDate: new Date() });
       this.description = '';
       this.startDate = new Date();
+      this.title ='';
       this.dueDate = new Date();
     }
   }
