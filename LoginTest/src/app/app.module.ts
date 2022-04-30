@@ -10,7 +10,7 @@ import { GoogleCalendarIntegrationComponent } from './google-calendar-integratio
   declarations: [
     AppComponent,
     TodoComponent,
-    GoogleCalendarIntegrationComponent
+    GoogleCalendarIntegrationComponent,
   ],
   imports: [
     BrowserModule,

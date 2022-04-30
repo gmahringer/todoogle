@@ -1,0 +1,24 @@
+div {
+  margin: auto;
+  width: 50%;
+}
+
+div.head {
+  text-align: center;
+}
+
+button {
+  padding: 3px 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+button.add {
+  margin-left: 5px;
+}
+
+input {
+  border: 1px;
+  border-radius: 3px;
+  margin: 3px;
+}
