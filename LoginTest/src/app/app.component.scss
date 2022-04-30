@@ -1,5 +1,5 @@
 html {
-  background: linear-gradient(180deg, #fcc79e, #6b442f);
+  background: linear-gradient(180deg, #fcc79e, #6c4936);
   width: 100%;
   min-height:100vh;
   background-size: cover;
@@ -7,7 +7,23 @@ html {
 }
 
 div {
-  margin: auto;
-  width: 50%;
+  //overflow: hidden;
+  width: 100%;
 }
+
+div.topnav a {
+  float: left;
+  text-align: center;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #4d2914;
+}
+
+div.topnav a:hover {
+  color: black;
+}
+
+//div.topnav a:active {
+//  color: white;
+//}
 
