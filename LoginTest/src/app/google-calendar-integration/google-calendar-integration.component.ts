@@ -102,10 +102,11 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
             if (events.length > 0) {
               for (const event of events) {
                 let when = event.start.dateTime;
+                let desc = event.description;
                 if (!when) {
                   when = event.start.date;
                 }
-                appendPre(event.summary + ' (' + when + ')');
+                appendPre(event.summary +' '+desc+ ' (' + when + ')');
               }
             } else {
               appendPre('No upcoming events found.');
