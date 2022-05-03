@@ -1,39 +1,16 @@
 div {
   margin: auto;
   width: 50%;
-  align-content: center;
 }
 
 div.head {
-  margin-bottom: 50px;
-  margin-top: 20px;
   text-align: center;
-}
-
-div.addItem {
-  margin-bottom: 20px;
-}
-
-div.displayTodo {
-  width: 100%;
-}
-
-div.displayTodo div {
-  width:100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
 }
 
 button {
   padding: 3px 10px;
-  border: solid 1px;
+  border: none;
   border-radius: 5px;
-  background: none;
-}
-
-button:hover {
-  color: black;
 }
 
 button.add {
@@ -45,16 +22,3 @@ input {
   border-radius: 3px;
   margin: 3px;
 }
-
-span.date {
-  margin-left: 70px;
-}
-
-label {
-  margin-right: 20px;
-}
-
-input.date {
-  height: 20px;
-}
-

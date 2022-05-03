@@ -1,20 +1,14 @@
 html {
-  background: linear-gradient(180deg, #fcc79e, #795442);
+  background: linear-gradient(180deg, #fcc79e, #6c4936);
   width: 100%;
   min-height:100vh;
   background-size: cover;
   font-family: "Courier New";
-  color: #49270d;
 }
 
-div.topnav {
-  overflow: hidden;
+div {
+  //overflow: hidden;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px;
-  border-bottom: solid 1px;
 }
 
 div.topnav a {
@@ -27,16 +21,6 @@ div.topnav a {
 
 div.topnav a:hover {
   color: black;
-}
-
-input {
-  border: solid 1px;
-  border-radius: 6px;
-  background: none;
-  margin-right: 10px;
-  font-size: small;
-  width: 225px;
-  padding-top: 3px;
 }
 
 //div.topnav a:active {
