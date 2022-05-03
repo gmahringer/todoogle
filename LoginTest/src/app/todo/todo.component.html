@@ -1,15 +1,35 @@
-<h2>Todos</h2>
+<div class="head">
+    <h1 style="font-size: 75px">Todos</h1>
+</div>
 <div class="addItem">
-    New todo: <input type="text" [(ngModel)]="title">
-    description: <input type="text" [(ngModel)]="description">
-    from: <input type="datetime-local" [(ngModel)]="startDate">
-    to: <input type="datetime-local" [(ngModel)]="dueDate">
-    <button (click)="addTodo(title,description, startDate, dueDate)">Add</button>
+    <label for="descTitle">Neues Todo: </label>
+    <span class="descTitle" id="descTitle">
+        <input type="text" placeholder=" Task" [(ngModel)]="title">
+        <input type="text" placeholder=" Beschreibung" [(ngModel)]="description">
+    </span>
+    <button class="add" (click)="addTodo(title,description, startDate, dueDate)">Add</button>
+    <br>
+    <span class="date" id="date">
+        <label for="date" style="font-size: smaller">Datum: </label>
+        <input class="date" type="datetime-local" [(ngModel)]="startDate">
+        -
+        <input class="date" type="datetime-local" [(ngModel)]="dueDate">
+    </span>
 </div>
 
-<div *ngFor="let item of getTodos()">
-    <span><b>Todo: </b>{{ item.title}} <b>Description: </b>{{ item.description }} <b>Created: </b>{{ item.creationDate | date:'dd.MM.YY' }} <b>Start date: </b>{{ item.startDate }} <b>Due date: </b>{{ item.dueDate}}</span>
-    <button (click)="deleteTodo(item.id)">Delete</button>
+<div *ngFor="let item of getTodos()" style="padding:0px 10px;margin-bottom:10px;border: solid 1px">
+    <div class="displayTodo">
+        <div>
+            <p style="font-size: larger"><b>{{ item.title}}</b></p>
+            <p><b>bis: </b>{{ item.dueDate}}</p>
+        </div>
+        <b>Description: </b>{{ item.description }}<br>
+        <div>
+            {{ item.creationDate | date:'dd.MM.YY' }}
+            <button (click)="deleteTodo(item.id)">Delete</button>
+        </div>
+        <!--{{item.startDate}}-->
+    </div>
 </div>
 
 
