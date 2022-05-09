@@ -1,4 +1,5 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {GoogleCalendarIntegrationComponent} from "./google-calendar-integration/google-calendar-integration.component";
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,6 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'LoginTest';
-
 
   user: gapi.auth2.GoogleUser | undefined
 

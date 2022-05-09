@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { TodoComponent } from './todo/todo.component';
 import { GoogleCalendarIntegrationComponent } from './google-calendar-integration/google-calendar-integration.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import { AppComponent } from './app.component';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +19,8 @@ import { GoogleCalendarIntegrationComponent } from './google-calendar-integratio
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

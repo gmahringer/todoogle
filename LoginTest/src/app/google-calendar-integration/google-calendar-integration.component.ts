@@ -1,5 +1,13 @@
 import {Component, NgZone, OnInit} from '@angular/core';
 import {calendar_v3} from "@googleapis/calendar";
+import {CalendarOptions, FullCalendarModule} from "@fullcalendar/angular";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
 
 
 @Component({
@@ -17,6 +25,19 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
   dueDate: String;
 
   constructor(private zone: NgZone) {}
+
+  calendarOptions: CalendarOptions = {
+    initialView: 'dayGridMonth',
+    dateClick: this.handleDateClick.bind(this),
+    events: [
+      { title: 'event 1', date: '2022-05-11' },
+      { title: 'event 2', date: '2022-05-12' }
+    ]
+  };
+
+  handleDateClick(arg) {
+    alert('date click! ' + arg.dateStr)
+  }
 
   initClient() {
     const updateSigninStatus = this.updateSigninStatus.bind(this);
@@ -84,6 +105,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
   }
 
   listUpcomingEvents() {
+    let events;
     const appendPre = this.appendPre.bind(this);
     gapi.client['calendar'].events
         .list({
@@ -96,7 +118,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
         })
         .then((response) => {
           this.zone.run(() => {
-            const events = response.result.items;
+            events = response.result.items;
             appendPre('Upcoming events:');
 
             if (events.length > 0) {
@@ -112,6 +134,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
             }
           });
         });
+    return events;
   }
 
   appendPre(text) {
