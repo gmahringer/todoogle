@@ -1,8 +1,8 @@
 <html>
 <div class="topnav">
     <div class="links">
-        <a class="nav-link active" href="#home">Home</a>
-        <a href="#alltodos">Alle Einträge</a>
+        <a routerLink="./home" routerLinkActive="active">Home</a>
+        <a routerLink="./todo" routerLinkActive="active">Neues Todo erstellen</a>
     </div>
     <h2>toDoogle</h2>
     <div class="logo">
@@ -10,5 +10,7 @@
     </div>
 </div>
 <app-google-calendar-integration></app-google-calendar-integration>
-<app-todo></app-todo>
+<!--<app-home></app-home>
+<app-todo></app-todo>-->
+<router-outlet></router-outlet>
 </html>

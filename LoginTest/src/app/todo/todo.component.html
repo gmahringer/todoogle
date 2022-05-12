@@ -1,23 +1,36 @@
 <div class="head">
-    <h1 style="font-size: 75px">Todos</h1>
+    <h1 style="font-size: 50px">Neues Todo erstellen</h1>
 </div>
 <div class="addItem">
-    <label for="descTitle">Neues Todo: </label>
+    <label for="title">Task: </label>
+    <input type="text" id="title" [(ngModel)]="title">
+    <div class="date" id="date">
+        <label for="date">Datum: </label>
+        <input class="date" type="datetime-local" [(ngModel)]="startDate">
+        -
+        <input class="date" type="datetime-local" [(ngModel)]="dueDate">
+    </div>
+    <label for="desc">Beschreibung: </label>
+    <textarea id="desc" rows="6" cols="54" [(ngModel)]="description"></textarea>
+    <!--<label for="descTitle">Neues Todo: </label>
     <span class="descTitle" id="descTitle">
         <input type="text" placeholder=" Task" [(ngModel)]="title">
         <input type="text" placeholder=" Beschreibung" [(ngModel)]="description">
-    </span>
-    <button class="add" (click)="addTodo(title,description, startDate, dueDate)">Add</button>
+    </span>-->
     <br>
-    <span class="date" id="date">
+    <div class="btn">
+        <button class="add" (click)="addTodo(title,description, startDate, dueDate)">Add</button>
+    </div>
+    <br>
+    <!--<span class="date" id="date">
         <label for="date" style="font-size: smaller">Datum: </label>
         <input class="date" type="datetime-local" [(ngModel)]="startDate">
         -
         <input class="date" type="datetime-local" [(ngModel)]="dueDate">
-    </span>
+    </span>-->
 </div>
 
-<div *ngFor="let item of getTodos()" style="padding:0px 10px;margin-bottom:10px;border: solid 1px">
+<div *ngFor="let item of getTodos()" style="padding:0 10px;margin-bottom:10px;border: solid 1px">
     <div class="displayTodo">
         <div>
             <p style="font-size: larger"><b>{{ item.title}}</b></p>

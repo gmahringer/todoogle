@@ -3,6 +3,8 @@ import {calendar_v3} from "@googleapis/calendar";
 import {CalendarOptions, FullCalendarModule} from "@fullcalendar/angular";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import { Calendar } from '@fullcalendar/core';
+import googleCalendarPlugin from '@fullcalendar/google-calendar';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -23,6 +25,8 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
   title: String;
   startDate: String;
   dueDate: String;
+  //todos: any[] = this.listUpcomingEvents(); //!!
+  //calendarId: String;
 
   constructor(private zone: NgZone) {}
 
@@ -33,7 +37,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
       { title: 'event 1', date: '2022-05-11' },
       { title: 'event 2', date: '2022-05-12' }
     ]
-  };
+  }
 
   handleDateClick(arg) {
     alert('date click! ' + arg.dateStr)
@@ -59,6 +63,8 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
             updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
           });
         });
+    /*this.calendarId = gapi.client['calendar'].calendarId;
+    this.appendPre(this.calendarId);*/
   }
 
   updateSigninStatus(isSignedIn) {
@@ -100,7 +106,6 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
     });
 
     request.execute(function(event) {
-
     });
   }
 
@@ -119,7 +124,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
         .then((response) => {
           this.zone.run(() => {
             events = response.result.items;
-            appendPre('Upcoming events:');
+            //appendPre('Upcoming events:');
 
             if (events.length > 0) {
               for (const event of events) {
@@ -127,13 +132,14 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
                 if (!when) {
                   when = event.start.date;
                 }
-                appendPre(event.summary + ' (' + when + ')');
+                //appendPre(event.summary + ' (' + when + ')');
               }
             } else {
-              appendPre('No upcoming events found.');
+              //appendPre('No upcoming events found.');
             }
           });
         });
+    //appendPre(gapi.client['calendar'].calendarId);
     return events;
   }
 

@@ -2,16 +2,21 @@ div {
   margin: auto;
   width: 50%;
   align-content: center;
+  //text-align: center;
+  //display: flex;
 }
 
 div.head {
   margin-bottom: 50px;
   margin-top: 20px;
   text-align: center;
+  //justify-content: center;
 }
 
 div.addItem {
   margin-bottom: 20px;
+  //text-align: left;
+
 }
 
 div.displayTodo {
@@ -43,11 +48,19 @@ button.add {
 input {
   border: 1px;
   border-radius: 3px;
-  margin: 3px;
+  margin: 10px;
 }
 
-span.date {
-  margin-left: 70px;
+div.date {
+  //margin-left: 70px;
+  width: 100%;
+  //text-align: left;
+}
+
+div.btn {
+  width: 100%;
+  display: flex;
+  justify-content: right;
 }
 
 label {
@@ -55,6 +68,7 @@ label {
 }
 
 input.date {
-  height: 20px;
+  //height: 20px;
+  margin-left: 0;
 }
 

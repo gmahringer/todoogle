@@ -8,6 +8,10 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 import { AppComponent } from './app.component';
+import { CalendarviewComponent } from './calendarview/calendarview.component';
+import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from "@angular/common/http";
+import { ListviewComponent } from './listview/listview.component';
 
 
 @NgModule({
@@ -15,12 +19,16 @@ import { AppComponent } from './app.component';
     AppComponent,
     TodoComponent,
     GoogleCalendarIntegrationComponent,
+    CalendarviewComponent,
+    HomeComponent,
+    ListviewComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    FullCalendarModule
+    FullCalendarModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

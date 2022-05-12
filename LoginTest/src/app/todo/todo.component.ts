@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Todo} from "./todo";
 import {GoogleCalendarIntegrationComponent} from "../google-calendar-integration/google-calendar-integration.component";
+//import {AppComponent} from "../app.component";
 
 @Component({
   selector: 'app-todo',

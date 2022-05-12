@@ -1,0 +1,16 @@
+<div>
+    <h1 style="font-size: 75px">Todos</h1>
+</div>
+<div class="buttons">
+    <button (click)="showList()" style="border-radius: 10px 0 0 10px">Heute</button>
+    <button (click)="showCalendar()" style="border-radius: 0 10px 10px 0">Kalenderansicht</button>
+</div>
+<div *ngIf="displayCalendar">
+    <app-calendarview></app-calendarview>
+</div>
+<div *ngIf="!displayCalendar">
+    <app-listview></app-listview>
+</div>
+
+
+
