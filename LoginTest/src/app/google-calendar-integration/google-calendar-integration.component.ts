@@ -5,6 +5,8 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { Calendar } from '@fullcalendar/core';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
+import * as myGlobals from 'globals';
+import {AppComponent} from "../app.component";
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -70,6 +72,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
   updateSigninStatus(isSignedIn) {
     console.log('updateSigninStatus', isSignedIn);
     this.isSignedIn = isSignedIn;
+    AppComponent.isSignedIn = isSignedIn;
     if (isSignedIn) {
       this.listUpcomingEvents();
     }

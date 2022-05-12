@@ -1,16 +1,23 @@
 <html>
 <div class="topnav">
-    <div class="links">
-        <a routerLink="./home" routerLinkActive="active">Home</a>
-        <a routerLink="./todo" routerLinkActive="active">Neues Todo erstellen</a>
+    <div class="links" >
+        <a *ngIf="isSigned()" routerLink="./home" routerLinkActive="active">Home</a>
+        <a *ngIf="isSigned()" routerLink="./todo" routerLinkActive="active">Neues Todo erstellen</a>
     </div>
     <h2>toDoogle</h2>
     <div class="logo">
-        <input type="text" placeholder=" Suchen">
+        <input type="text" *ngIf="isSigned()" placeholder=" Suchen">
     </div>
 </div>
+<div class="welcome" *ngIf="!isSigned()" >
+    <pre>Willkommen
+ bei
+  ToDoogle!</pre>
+</div>
 <app-google-calendar-integration></app-google-calendar-integration>
+<div *ngIf="isSigned()">
 <!--<app-home></app-home>
 <app-todo></app-todo>-->
 <router-outlet></router-outlet>
+</div>
 </html>

@@ -12,7 +12,7 @@ import { CalendarviewComponent } from './calendarview/calendarview.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from "@angular/common/http";
 import { ListviewComponent } from './listview/listview.component';
-
+import * as myGlobals from 'globals';
 
 @NgModule({
   declarations: [

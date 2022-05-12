@@ -8,6 +8,20 @@ html {
   padding-bottom: 20px;
 }
 
+div.welcome {
+  width: 800px;
+  height: 450px;
+  padding: 20px;
+  margin: 40px;
+  float: left;
+  border-radius: 20px;
+  position: relative;
+}
+
+div.welcome pre{
+  font-size: 100px;
+}
+
 div.topnav {
   overflow: hidden;
   width: 100%;
