@@ -7,6 +7,9 @@ import { Calendar } from '@fullcalendar/core';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
 import * as myGlobals from 'globals';
 import {AppComponent} from "../app.component";
+import {CalendarviewComponent} from "../calendarview/calendarview.component";
+import {ListviewComponent} from "../listview/listview.component";
+
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -27,23 +30,11 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
   title: String;
   startDate: String;
   dueDate: String;
+
   //todos: any[] = this.listUpcomingEvents(); //!!
   //calendarId: String;
 
   constructor(private zone: NgZone) {}
-
-  calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth',
-    dateClick: this.handleDateClick.bind(this),
-    events: [
-      { title: 'event 1', date: '2022-05-11' },
-      { title: 'event 2', date: '2022-05-12' }
-    ]
-  }
-
-  handleDateClick(arg) {
-    alert('date click! ' + arg.dateStr)
-  }
 
   initClient() {
     const updateSigninStatus = this.updateSigninStatus.bind(this);
@@ -131,20 +122,21 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
 
             if (events.length > 0) {
               for (const event of events) {
+                CalendarviewComponent.addEvent(event.summary, event.start.dateTime, event.end.dateTime);
+                ListviewComponent.addEvent(event.summary, event.start.dateTime, event.end.dateTime);
                 let when = event.start.dateTime;
                 if (!when) {
                   when = event.start.date;
                 }
-                //appendPre(event.summary + ' (' + when + ')');
+                //appendPre(event.summary + ' (' + when + ')' + event.end.dateTime);
               }
             } else {
               //appendPre('No upcoming events found.');
             }
           });
         });
-    //appendPre(gapi.client['calendar'].calendarId);
-    return events;
   }
+
 
   appendPre(text) {
     this.pre += text + '\n';

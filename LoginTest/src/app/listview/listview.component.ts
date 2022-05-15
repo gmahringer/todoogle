@@ -19,6 +19,17 @@ import googleCalendarPlugin from "@fullcalendar/google-calendar";
 })
 export class ListviewComponent implements OnInit {
 
+  static events = [{}]
+
+  static addEvent(title,start,end) {
+    let event = {
+      title: title,
+      start: start,
+      end: end
+    }
+    ListviewComponent.events.push(event)
+  }
+
   constructor() { }
 
   calendarOptions: CalendarOptions = {
@@ -26,9 +37,7 @@ export class ListviewComponent implements OnInit {
     dateClick: this.handleDateClick.bind(this),
     plugins: [ listPlugin,googleCalendarPlugin ],
     googleCalendarApiKey: 'AIzaSyAp_Insk0JjH4oxZ4I0-PLIydIno9jZEZ8',
-    events: {
-      googleCalendarId: 'todoogle94@gmail.com' //static information
-    }
+    events: ListviewComponent.events
   };
 
   handleDateClick(arg) {
