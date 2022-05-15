@@ -9,6 +9,7 @@ import * as myGlobals from 'globals';
 import {AppComponent} from "../app.component";
 import {CalendarviewComponent} from "../calendarview/calendarview.component";
 import {ListviewComponent} from "../listview/listview.component";
+import {AllTodosComponent} from "../all-todos/all-todos.component";
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -79,8 +80,8 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
 
 
   static addEvent(title,description,startDate, dueDate) {
-    startDate = startDate.toString() + ':00+01:00'
-    dueDate = dueDate.toString() + ':00+01:00'
+    startDate = startDate.toString() + ':00+02:00'
+    dueDate = dueDate.toString() + ':00+02:00'
     let event: calendar_v3.Schema$Event = {
       summary: title,
       description: description,
@@ -109,10 +110,8 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
     gapi.client['calendar'].events
         .list({
           calendarId: 'primary',
-          timeMin: new Date().toISOString(),
           showDeleted: false,
           singleEvents: true,
-          maxResults: 10,
           orderBy: 'startTime',
         })
         .then((response) => {
@@ -124,6 +123,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
               for (const event of events) {
                 CalendarviewComponent.addEvent(event.summary, event.start.dateTime, event.end.dateTime);
                 ListviewComponent.addEvent(event.summary, event.start.dateTime, event.end.dateTime);
+                AllTodosComponent.addEvent(event.summary, event.start.dateTime, event.end.dateTime);
                 let when = event.start.dateTime;
                 if (!when) {
                   when = event.start.date;

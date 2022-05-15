@@ -5,14 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { TodoComponent } from './todo/todo.component';
 import { GoogleCalendarIntegrationComponent } from './google-calendar-integration/google-calendar-integration.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 import { AppComponent } from './app.component';
 import { CalendarviewComponent } from './calendarview/calendarview.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from "@angular/common/http";
 import { ListviewComponent } from './listview/listview.component';
-import * as myGlobals from 'globals';
+
+import { AllTodosComponent } from './all-todos/all-todos.component';
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
+import { EditEventComponent } from './edit-event/edit-event.component';
 
 @NgModule({
   declarations: [
@@ -22,15 +23,17 @@ import * as myGlobals from 'globals';
     CalendarviewComponent,
     HomeComponent,
     ListviewComponent,
+    AllTodosComponent,
+    EditEventComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     FullCalendarModule,
-    HttpClientModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [BsModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
