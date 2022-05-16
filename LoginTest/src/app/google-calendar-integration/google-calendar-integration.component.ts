@@ -57,6 +57,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
             updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
           });
         });
+    this.listUpcomingEvents();
     /*this.calendarId = gapi.client['calendar'].calendarId;
     this.appendPre(this.calendarId);*/
   }
@@ -68,6 +69,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
     if (isSignedIn) {
       this.listUpcomingEvents();
     }
+    this.listUpcomingEvents();
   }
 
   handleAuthClick() {
@@ -104,6 +106,32 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
     });
   }
 
+  static deleteEvent(id){
+    let request = gapi.client['calendar'].events.delete({
+      calendarId: 'primary',
+      eventId: id
+    });
+
+    request.execute(function() {
+    });
+  }
+
+  // editEvent() {
+  //   let event: calendar_v3.Schema$Event = gapi.client['calendar'].events.get({
+  //     calendarId: 'primary',
+  //     eventId: 'u9obmihs83jf0dfb5iot0j2cf0'
+  //   })
+  //
+  //   let request = gapi.client['calendar'].events.update({
+  //     calendarId: 'primary',
+  //     eventId: 'u9obmihs83jf0dfb5iot0j2cf0',
+  //     summary: 'new edit test'
+  //   })
+  //
+  //   request.execute(function() {
+  //   });
+  // }
+
   listUpcomingEvents() {
     let events;
     const appendPre = this.appendPre.bind(this);
@@ -121,9 +149,9 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
 
             if (events.length > 0) {
               for (const event of events) {
-                CalendarviewComponent.addEvent(event.summary, event.start.dateTime, event.end.dateTime);
-                ListviewComponent.addEvent(event.summary, event.start.dateTime, event.end.dateTime);
-                AllTodosComponent.addEvent(event.summary, event.start.dateTime, event.end.dateTime);
+                CalendarviewComponent.addEvent(event.id, event.summary, event.start.dateTime, event.end.dateTime);
+                ListviewComponent.addEvent(event.id, event.summary, event.start.dateTime, event.end.dateTime);
+                AllTodosComponent.addEvent(event.id,event.summary, event.start.dateTime, event.end.dateTime);
                 let when = event.start.dateTime;
                 if (!when) {
                   when = event.start.date;

@@ -1,40 +1,42 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CalendarOptions, FullCalendarModule} from "@fullcalendar/angular";
+import googleCalendarPlugin from "@fullcalendar/google-calendar";
+import listPlugin from '@fullcalendar/list';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+import {EditEventComponent} from "../edit-event/edit-event.component";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import googleCalendarPlugin from '@fullcalendar/google-calendar';
-import {EditEventComponent} from "../edit-event/edit-event.component";
-import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
+  listPlugin,
   interactionPlugin
 ]);
 
 @Component({
-  selector: 'app-calendarview',
-  templateUrl: './calendarview.component.html',
-  styleUrls: ['./calendarview.component.scss']
+  selector: 'app-all-todos',
+  templateUrl: './all-todos.component.html',
+  styleUrls: ['./all-todos.component.scss']
 })
-export class CalendarviewComponent implements OnInit {
+
+export class AllTodosComponent implements OnInit {
 
   modalRef: BsModalRef;
 
-  //@Input() calendarId: String;
-  static events = [{ }]
+  static events = [{}]
 
-  static addEvent(id,title,start,end) {
+  static addEvent(id, title, start, end) {
     let event = {
       id: id,
       title: title,
       start: start,
       end: end
     }
-    CalendarviewComponent.events.push(event)
+    AllTodosComponent.events.push(event)
   }
 
-  constructor(private modalService: BsModalService) {
-  }
+  constructor(private modalService: BsModalService) {}
 
   openModal(arg) {
     EditEventComponent.id = arg.event.id ;
@@ -45,19 +47,21 @@ export class CalendarviewComponent implements OnInit {
   }
 
   calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth',
+    initialView: 'listYear',
     dateClick: this.handleDateClick.bind(this),
     eventClick: this.openModal.bind(this),
+    plugins: [listPlugin],
     googleCalendarApiKey: 'AIzaSyAp_Insk0JjH4oxZ4I0-PLIydIno9jZEZ8',
-    events: CalendarviewComponent.events
+    events: AllTodosComponent.events
   };
 
+
+  ngOnInit(): void {
+  }
 
   handleDateClick(arg) {
     alert('date click! ' + arg.dateStr);
   }
 
-  ngOnInit(): void {
-  }
 
 }
