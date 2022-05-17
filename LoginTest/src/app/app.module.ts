@@ -12,7 +12,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ListviewComponent } from './listview/listview.component';
 
 import { AllTodosComponent } from './all-todos/all-todos.component';
-import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { EditEventComponent } from './edit-event/edit-event.component';
 
 @NgModule({

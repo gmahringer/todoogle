@@ -68,6 +68,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
     AppComponent.isSignedIn = isSignedIn;
     if (isSignedIn) {
       this.listUpcomingEvents();
+      this.getEvent()
     }
     this.listUpcomingEvents();
   }
@@ -81,10 +82,11 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
   }
 
 
-  static addEvent(title,description,startDate, dueDate) {
+  static addEvent(id,title,description,startDate, dueDate) {
     startDate = startDate.toString() + ':00+02:00'
     dueDate = dueDate.toString() + ':00+02:00'
     let event: calendar_v3.Schema$Event = {
+      id: id,
       summary: title,
       description: description,
       start: {
@@ -115,6 +117,26 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
     request.execute(function() {
     });
   }
+
+  /*sollte static sein*/
+  getEvent(){
+    const appendPre = this.appendPre.bind(this);
+    gapi.client['calendar'].events
+        .get({
+          calendarId: 'primary',
+          eventId: 'nm57o369d553qvo1p09dh3k1e0'
+        })
+        .then((response) => {
+          this.zone.run(() => {
+            let e = response.result;
+            appendPre(e.summary);
+          });
+        });
+  }
+
+
+
+
 
   // editEvent() {
   //   let event: calendar_v3.Schema$Event = gapi.client['calendar'].events.get({

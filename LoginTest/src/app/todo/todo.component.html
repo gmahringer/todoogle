@@ -29,6 +29,7 @@
         <input class="date" type="datetime-local" [(ngModel)]="dueDate">
     </span>-->
 </div>
+<div class="added">Jetzt hinzugefügt:</div>
 
 <div *ngFor="let item of getTodos()" style="padding:0 10px;margin-bottom:10px;border: solid 1px">
     <div class="displayTodo">
@@ -44,5 +45,6 @@
         <!--{{item.startDate}}-->
     </div>
 </div>
+
 
 
