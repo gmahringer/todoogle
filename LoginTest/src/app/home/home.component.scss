@@ -1,3 +1,12 @@
+h1 {
+  color: #966969;
+  font-size: 75px;
+}
+
+label {
+  color: #966969;
+}
+
 div {
   margin: 30px auto auto auto;
   width: 80%;
@@ -5,8 +14,12 @@ div {
 }
 
 button {
-  width: 170px;
+  color: #966969;
+  font-weight: bold;
+  height: 50px;
+  width: 200px;
   padding: 3px;
   background: none;
-  border: solid 1px;
+  border: solid 3px;
+  border-color: #966969
 }

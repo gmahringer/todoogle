@@ -1,25 +1,28 @@
+<head>
+    <link rel="stylesheet" href="./todo.component.scss">
+</head>
 <div class="head">
-    <h1 style="font-size: 50px">Neues Todo erstellen</h1>
+    <h1 style="font-size:75px; color: #966969;">Neues Todo erstellen</h1>
 </div>
 <div class="addItem">
-    <label for="title">Task: </label>
+    <label style="color:#966969" for="title">Title: </label>
     <input type="text" id="title" [(ngModel)]="title">
     <div class="date" id="date">
-        <label for="date">Datum: </label>
+        <label for="date">Date: </label>
         <input class="date" type="datetime-local" [(ngModel)]="startDate">
         -
         <input class="date" type="datetime-local" [(ngModel)]="dueDate">
     </div>
-    <label for="desc">Beschreibung: </label>
+    <label  for="desc" style="color:#966969">Description: </label>
     <textarea id="desc" rows="6" cols="54" [(ngModel)]="description"></textarea>
-    <!--<label for="descTitle">Neues Todo: </label>
+    <!--<label for="descTitle">New Todo: </label>
     <span class="descTitle" id="descTitle">
         <input type="text" placeholder=" Task" [(ngModel)]="title">
-        <input type="text" placeholder=" Beschreibung" [(ngModel)]="description">
+        <input type="text" placeholder=" Description" [(ngModel)]="Description">
     </span>-->
     <br>
     <div class="btn">
-        <button class="add" (click)="addTodo(title,description, startDate, dueDate)">Add</button>
+        <button class="add" (click)="addTodo(title,description, startDate, dueDate)">Add Task</button>
     </div>
     <br>
     <!--<span class="date" id="date">
@@ -29,7 +32,7 @@
         <input class="date" type="datetime-local" [(ngModel)]="dueDate">
     </span>-->
 </div>
-<div class="added">Jetzt hinzugefügt:</div>
+<div class="added">Newly added:</div>
 
 <div *ngFor="let item of getTodos()" style="padding:0 10px;margin-bottom:10px;border: solid 1px">
     <div class="displayTodo">

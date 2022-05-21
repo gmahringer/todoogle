@@ -1,4 +1,15 @@
+h1 {
+  font-size: 50px;
+  font-color: #ffffff;
+}
+
+label {
+  color: #966969;
+  font-weight: bold;
+}
+
 div {
+  color: #966969;
   margin: auto;
   width: 50%;
   align-content: center;
@@ -47,7 +58,9 @@ button:hover {
 }
 
 button.add {
+  background-color: #966969;
   margin-left: 5px;
+  width: 100px;
 }
 
 input {

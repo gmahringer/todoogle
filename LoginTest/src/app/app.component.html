@@ -1,16 +1,16 @@
 <html>
 <div class="topnav">
     <div class="links" >
-        <a *ngIf="isSigned()" routerLink="./home" routerLinkActive="active">Home</a>
-        <a *ngIf="isSigned()" routerLink="./todo" routerLinkActive="active">Neues Todo erstellen</a>
-        <a *ngIf="isSigned()" routerLink="./all-todos" routerLinkActive="active">Alle Einträge</a>
+        <a style="color: #966969" *ngIf="isSigned()" routerLink="./home" routerLinkActive="active">Home</a>
+        <a style="color: #966969" *ngIf="isSigned()" routerLink="./todo" routerLinkActive="active">Neues Todo erstellen</a>
+        <a style="color: #966969" *ngIf="isSigned()" routerLink="./all-todos" routerLinkActive="active">Alle Einträge</a>
     </div>
-    <h2>toDoogle</h2>
+    <h2 style="font-weight: bold; color: #966969; text-align: center">ToDoogle</h2>  <!-- not aligning center TODO -->
     <div class="logo">
-        <input type="text" *ngIf="isSigned()" placeholder=" Suchen">
+        <input type="text" *ngIf="isSigned()" placeholder=" Search">
     </div>
 </div>
-<div class="welcome" *ngIf="!isSigned()" >
+<div style="text-align: center" class="welcome" *ngIf="!isSigned()" >
     <pre>Willkommen
  bei
   ToDoogle!</pre>

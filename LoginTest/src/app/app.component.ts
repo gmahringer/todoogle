@@ -8,7 +8,7 @@ import * as myGlobals from 'globals';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'LoginTest';
+  title = 'Login';
 
   user: gapi.auth2.GoogleUser | undefined
 
