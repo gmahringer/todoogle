@@ -25,9 +25,10 @@ export class ListviewComponent implements OnInit {
 
   static events = [{}]
 
-  static addEvent(id,title,start,end) {
+  static addEvent(id,title,start,end,recurringEventId) {
     let event = {
       id: id,
+      groupId: recurringEventId,
       title: title,
       start: start,
       end: end
@@ -52,6 +53,7 @@ export class ListviewComponent implements OnInit {
 
   openModal(arg) {
     EditEventComponent.id = arg.event.id ;
+    EditEventComponent.recurringEventId = arg.event.groupId ;
     EditEventComponent.title = arg.event.title ;
     EditEventComponent.start = arg.event.start ;
     EditEventComponent.end = arg.event.start ;

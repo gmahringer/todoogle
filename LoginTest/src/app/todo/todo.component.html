@@ -15,6 +15,12 @@
     </div>
     <label  for="desc" style="color:#966969">Description: </label>
     <textarea id="desc" rows="6" cols="54" [(ngModel)]="description"></textarea>
+    <label  for="desc" style="color:#966969">Recurrence: </label>
+    <select [(ngModel)]="selectedRecurrence">
+        <option *ngFor="let r of recurrence" [ngValue]="r">{{r.name}}</option>
+    </select>
+
+
     <!--<label for="descTitle">New Todo: </label>
     <span class="descTitle" id="descTitle">
         <input type="text" placeholder=" Task" [(ngModel)]="title">
@@ -22,7 +28,7 @@
     </span>-->
     <br>
     <div class="btn">
-        <button class="add" (click)="addTodo(title,description, startDate, dueDate)">Add Task</button>
+        <button class="add" (click)="addTodo(title,description, startDate, dueDate, selectedRecurrence)">Add Task</button>
     </div>
     <br>
     <!--<span class="date" id="date">
@@ -43,7 +49,6 @@
         <b>Description: </b>{{ item.description }}<br>
         <div>
             {{ item.creationDate | date:'dd.MM.YY' }}
-            <button (click)="deleteTodo(item.id)">Delete</button>
         </div>
         <!--{{item.startDate}}-->
     </div>

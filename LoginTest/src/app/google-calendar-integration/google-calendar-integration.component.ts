@@ -3,9 +3,6 @@ import {calendar_v3} from "@googleapis/calendar";
 import {CalendarOptions, FullCalendarModule} from "@fullcalendar/angular";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { Calendar } from '@fullcalendar/core';
-import googleCalendarPlugin from '@fullcalendar/google-calendar';
-import * as myGlobals from 'globals';
 import {AppComponent} from "../app.component";
 import {CalendarviewComponent} from "../calendarview/calendarview.component";
 import {ListviewComponent} from "../listview/listview.component";
@@ -57,7 +54,6 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
             updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
           });
         });
-    this.listUpcomingEvents();
     /*this.calendarId = gapi.client['calendar'].calendarId;
     this.appendPre(this.calendarId);*/
   }
@@ -68,9 +64,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
     AppComponent.isSignedIn = isSignedIn;
     if (isSignedIn) {
       this.listUpcomingEvents();
-      this.getEvent()
     }
-    this.listUpcomingEvents();
   }
 
   handleAuthClick() {
@@ -82,21 +76,83 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
   }
 
 
-  static addEvent(id,title,description,startDate, dueDate) {
+  static addEvent(title,description,startDate,dueDate,recurrence) {
     startDate = startDate.toString() + ':00+02:00'
     dueDate = dueDate.toString() + ':00+02:00'
-    let event: calendar_v3.Schema$Event = {
-      id: id,
-      summary: title,
-      description: description,
-      start: {
-        dateTime: startDate,
-        timeZone: 'Europe/Vienna'
-      },
-      end: {
-        dateTime: dueDate,
-        timeZone: 'Europe/Vienna'
-      },
+    let event: calendar_v3.Schema$Event
+    if(recurrence.name === 'weekly'){
+      event = {
+        summary: title,
+        description: description,
+        start: {
+          dateTime: startDate,
+          timeZone: 'Europe/Vienna'
+        },
+        end: {
+          dateTime: dueDate,
+          timeZone: 'Europe/Vienna'
+        },
+        recurrence: ['RRULE:FREQ=WEEKLY']
+      }
+    }
+    else if(recurrence.name === 'daily'){
+      event = {
+        summary: title,
+        description: description,
+        start: {
+          dateTime: startDate,
+          timeZone: 'Europe/Vienna'
+        },
+        end: {
+          dateTime: dueDate,
+          timeZone: 'Europe/Vienna'
+        },
+        recurrence: ['RRULE:FREQ=DAILY']
+      }
+    }
+    else if(recurrence.name === 'monthly'){
+      event = {
+        summary: title,
+        description: description,
+        start: {
+          dateTime: startDate,
+          timeZone: 'Europe/Vienna'
+        },
+        end: {
+          dateTime: dueDate,
+          timeZone: 'Europe/Vienna'
+        },
+        recurrence: ['RRULE:FREQ=MONTHLY']
+      }
+    }
+    else if(recurrence.name === 'yearly'){
+      event = {
+        summary: title,
+        description: description,
+        start: {
+          dateTime: startDate,
+          timeZone: 'Europe/Vienna'
+        },
+        end: {
+          dateTime: dueDate,
+          timeZone: 'Europe/Vienna'
+        },
+        recurrence: ['RRULE:FREQ=YEARLY']
+      }
+    }
+    else{
+      event = {
+        summary: title,
+        description: description,
+        start: {
+          dateTime: startDate,
+          timeZone: 'Europe/Vienna'
+        },
+        end: {
+          dateTime: dueDate,
+          timeZone: 'Europe/Vienna'
+        },
+      }
     }
 
     let request = gapi.client['calendar'].events.insert({
@@ -118,36 +174,48 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
     });
   }
 
-  /*sollte static sein*/
-  getEvent(){
-    const appendPre = this.appendPre.bind(this);
-    gapi.client['calendar'].events
-        .get({
-          calendarId: 'primary',
-          eventId: 'nm57o369d553qvo1p09dh3k1e0'
-        })
-        .then((response) => {
-          this.zone.run(() => {
-            let e = response.result;
-            appendPre(e.summary);
-          });
-        });
+  static deleteAll(groupId){
+    let request = gapi.client['calendar'].events.delete({
+      calendarId: 'primary',
+      eventId: '9bs45oa91946erh8ohv7o0snrk'
+    });
+
+    request.execute(function() {
+    });
   }
 
 
+  // /*sollte static sein*/
+  // getEvent(){
+  //   const appendPre = this.appendPre.bind(this);
+  //   gapi.client['calendar'].events
+  //       .get({
+  //         calendarId: 'primary',
+  //         eventId: 'akrqbtkph6jfv3n95l2nmvsp44'
+  //       })
+  //       .then((response) => {
+  //         this.zone.run(() => {
+  //           let e = response.result;
+  //           appendPre(e.summary);
+  //         });
+  //       });
+  // }
 
 
-
-  // editEvent() {
-  //   let event: calendar_v3.Schema$Event = gapi.client['calendar'].events.get({
+  // static editEvent() {
+  //   let event = gapi.client['calendar'].events.get({
   //     calendarId: 'primary',
-  //     eventId: 'u9obmihs83jf0dfb5iot0j2cf0'
+  //     eventId: 'akrqbtkph6jfv3n95l2nmvsp44'
   //   })
   //
-  //   let request = gapi.client['calendar'].events.update({
+  //   event.execute(function() {});
+  //
+  //   event.summary = 'exam change works'
+  //
+  //   let request =  gapi.client['calendar'].events.update({
   //     calendarId: 'primary',
-  //     eventId: 'u9obmihs83jf0dfb5iot0j2cf0',
-  //     summary: 'new edit test'
+  //     eventId: event.id,
+  //     body: event
   //   })
   //
   //   request.execute(function() {
@@ -171,14 +239,29 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
 
             if (events.length > 0) {
               for (const event of events) {
-                CalendarviewComponent.addEvent(event.id, event.summary, event.start.dateTime, event.end.dateTime);
-                ListviewComponent.addEvent(event.id, event.summary, event.start.dateTime, event.end.dateTime);
-                AllTodosComponent.addEvent(event.id,event.summary, event.start.dateTime, event.end.dateTime);
+                if(event.start.dateTime == null && event.end.dateTime ==null) {
+                  CalendarviewComponent.addEvent(event.id, event.summary, event.start.date, event.end.date,event.recurringEventId);
+                }
+                else {
+                  CalendarviewComponent.addEvent(event.id, event.summary, event.start.dateTime, event.end.dateTime,event.recurringEventId);
+                }
+                if(event.start.dateTime == null && event.end.dateTime ==null) {
+                  ListviewComponent.addEvent(event.id, event.summary, event.start.dateTime, event.end.dateTime,event.recurringEventId);
+                }
+                else {
+                  ListviewComponent.addEvent(event.id, event.summary, event.start.dateTime, event.end.dateTime,event.recurringEventId);
+                }
+                if(event.start.dateTime == null && event.end.dateTime ==null) {
+                  AllTodosComponent.addEvent(event.id,event.summary, event.start.dateTime, event.end.dateTime,event.recurringEventId);
+                }
+                else {
+                  AllTodosComponent.addEvent(event.id,event.summary, event.start.dateTime, event.end.dateTime,event.recurringEventId);
+                }
                 let when = event.start.dateTime;
                 if (!when) {
                   when = event.start.date;
                 }
-                //appendPre(event.summary + ' (' + when + ')' + event.end.dateTime);
+                //appendPre(event.summary + ' (' + when + ')' + 'recID' + event.recurringEventId + ' norm ID' + event.id);
               }
             } else {
               //appendPre('No upcoming events found.');

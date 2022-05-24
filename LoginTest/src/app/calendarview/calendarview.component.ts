@@ -20,12 +20,12 @@ export class CalendarviewComponent implements OnInit {
 
   modalRef: BsModalRef;
 
-  //@Input() calendarId: String;
   static events = [{ }]
 
-  static addEvent(id,title,start,end) {
+  static addEvent(id,title,start,end, recurringEventId) {
     let event = {
       id: id,
+      groupId: recurringEventId,
       title: title,
       start: start,
       end: end
@@ -38,15 +38,16 @@ export class CalendarviewComponent implements OnInit {
 
   openModal(arg) {
     EditEventComponent.id = arg.event.id ;
+    EditEventComponent.recurringEventId = arg.event.groupId ;
     EditEventComponent.title = arg.event.title ;
     EditEventComponent.start = arg.event.start ;
     EditEventComponent.end = arg.event.start ;
+
     this.modalRef = this.modalService.show(EditEventComponent);
   }
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
-    dateClick: this.handleDateClick.bind(this),
     eventClick: this.openModal.bind(this),
     googleCalendarApiKey: 'AIzaSyAp_Insk0JjH4oxZ4I0-PLIydIno9jZEZ8',
     events: CalendarviewComponent.events

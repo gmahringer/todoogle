@@ -1,8 +1,9 @@
 export interface Todo {
-    id: string;
+    id: number;
     title: string;
     description: string;
     startDate: Date;
     dueDate: Date;
     creationDate: Date;
+    recurrence: string;
 }
