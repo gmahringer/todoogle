@@ -44,6 +44,7 @@ div.topnav {
   justify-content: space-between;
   padding: 15px;
   border-bottom: solid 1px;
+  height: 70px;
 }
 
 div.topnav a {
@@ -70,6 +71,9 @@ input {
 
 .logo {
   position: absolute;
-  left: 45%;
+  left: 44%;
 }
 
+.logo h2 {
+  margin-top: 8px;
+}

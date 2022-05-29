@@ -1,5 +1,5 @@
 <html>
-<div class="topnav">
+<div class="topnav" *ngIf="isSigned()">
     <div class="links" >
         <a style="color: #966969" *ngIf="isSigned()" routerLink="./home" routerLinkActive="active">Home</a>
         <a style="color: #966969" *ngIf="isSigned()" routerLink="./todo" routerLinkActive="active">Neues Todo erstellen</a>
@@ -10,6 +10,9 @@
     <div class="search">
         <input type="text" *ngIf="isSigned()" placeholder=" Search">
     </div>
+</div>
+<div class="topnav" *ngIf="!isSigned()">
+    <div class="logo"><h2 style="font-weight: bold; color: #966969;">ToDoogle</h2></div>
 </div>
 <div style="text-align: center" class="welcome" *ngIf="!isSigned()" >
     <pre>Willkommen
