@@ -1,9 +1,9 @@
 <div>
     <h1>Overview</h1>
 </div>
-<div class="buttons">
-    <button (click)="showList()" style="border-radius: 10px 0 0 10px; background-color: #966969; color: white">Heute</button>
-    <button (click)="showCalendar()" style="border-radius: 0 10px 10px 0">Kalenderansicht</button>
+<div class="btn-group">
+    <button class="button" (click)="showList()" routerLinkActive="active" style="border-radius: 10px 0 0 10px;">Heute</button>
+    <button class="button" (click)="showCalendar()" routerLinkActive="active" style="border-radius: 0 10px 10px 0">Kalenderansicht</button>
 </div>
 <div *ngIf="displayCalendar">
     <app-calendarview></app-calendarview>

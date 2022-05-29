@@ -51,6 +51,7 @@ div.topnav a {
   text-align: center;
   padding: 10px 20px;
   text-decoration: none;
+  word-spacing: -6px;
 }
 
 input {
@@ -66,4 +67,9 @@ input {
 //div.topnav a:active {
 //  color: white;
 //}
+
+.logo {
+  position: absolute;
+  left: 45%;
+}
 

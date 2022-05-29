@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-//import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -22,6 +21,5 @@ export class HomeComponent implements OnInit {
 
   showList() {
     this.displayCalendar = false;
-    //this.http.get<any>("https://www.googleapis.com/calendar/v3/calendars/calendarId/events");
   }
 }
