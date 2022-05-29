@@ -1,0 +1,116 @@
+h1 {
+  font-size: 50px;
+  font-color: #ffffff;
+}
+
+label {
+  color: #966969;
+  font-weight: bold;
+}
+
+div {
+  color: #966969;
+  margin: auto;
+  width: 60%;
+  align-content: center;
+  //text-align: center;
+  //display: flex;
+}
+
+div.added{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+div.head {
+  margin-bottom: 50px;
+  margin-top: 20px;
+  text-align: center;
+  //justify-content: center;
+}
+
+div.addItem {
+  margin-bottom: 20px;
+  width: 50%;
+  display: grid;
+  grid-template-columns: 20px 800px;
+  gap: 10px;
+  //padding: 10px;
+  //align-content: space-evenly;
+}
+
+.addItem div {
+  //background-color: #f0dddd;
+  //text-align: right;
+  display: flex;
+  //align-items: first;
+  //justify-content: start;
+}
+
+div.displayTodo {
+  width: 100%;
+}
+
+div.displayTodo div {
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+button {
+  padding: 3px 10px;
+  border: solid 1px;
+  border-radius: 5px;
+  //background: none;
+  background-color: #966969;
+}
+
+button:hover {
+  //color: black;
+}
+
+button.add {
+  //background-color: #966969;
+  //margin-left: 5px;
+  //width: 100px;
+}
+
+input {
+  border: 1px;
+  border-radius: 3px;
+  //margin: 0px;
+}
+
+div.date {
+  //margin-left: 70px;
+  //width: 100%;
+  //text-align: left;
+}
+
+div.btn {
+  //width: 100%;
+  //display: flex;
+  //justify-content: right;
+}
+
+label {
+  //margin-right: 20px;
+}
+
+input.date {
+  //height: 20px;
+  //margin-left: 0;
+}
+
+textarea {
+  border: 0px;
+  border-radius: 3px;
+}
+
+select {
+  background-color: white;
+  border: none;
+  border-radius: 3px;
+  width: 40%;
+}

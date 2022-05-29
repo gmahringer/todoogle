@@ -1,0 +1,28 @@
+<html>
+<div class="topnav" *ngIf="isSigned()">
+    <div class="links" >
+        <a *ngIf="isSigned()" routerLink="./home" routerLinkActive="active">Home</a>
+        <a *ngIf="isSigned()" routerLink="./todo" routerLinkActive="active">Neues Todo erstellen</a>
+        <a *ngIf="isSigned()" routerLink="./all-todos" routerLinkActive="active">Alle Einträge</a>
+    </div>
+    <div class="logo"><h1 style="font-weight: bold; ">ToDoogle</h1></div>
+      <!-- not aligning center TODO -->
+    <div class="search">
+        <input type="text" *ngIf="isSigned()" placeholder=" Search">
+    </div>
+</div>
+<div class="topnav" *ngIf="!isSigned()">
+    <div class="logo"><h1 style="font-weight: bold;">ToDoogle</h1></div>
+</div>
+<div style="text-align: center" class="welcome" *ngIf="!isSigned()" >
+    <pre>Willkommen
+ bei
+  ToDoogle!</pre>
+</div>
+<app-google-calendar-integration></app-google-calendar-integration>
+<div *ngIf="isSigned()">
+<!--<app-home></app-home>
+<app-todo></app-todo>-->
+<router-outlet></router-outlet>
+</div>
+</html>
