@@ -1,8 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CalendarOptions, FullCalendarModule} from "@fullcalendar/angular";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import googleCalendarPlugin from '@fullcalendar/google-calendar';
 import {EditEventComponent} from "../edit-event/edit-event.component";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 

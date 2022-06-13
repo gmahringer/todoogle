@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-home',
@@ -9,8 +8,9 @@ import { HttpClient } from "@angular/common/http";
 export class HomeComponent implements OnInit {
 
   displayCalendar = false;
+  static displaySearch = false;
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
@@ -22,4 +22,9 @@ export class HomeComponent implements OnInit {
   showList() {
     this.displayCalendar = false;
   }
+
+  showSearch() {
+    return HomeComponent.displaySearch;
+  }
+
 }

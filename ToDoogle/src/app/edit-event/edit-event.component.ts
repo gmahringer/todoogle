@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import {BsModalRef} from "ngx-bootstrap/modal";
-import {CalendarviewComponent} from "../calendarview/calendarview.component";
 import {GoogleCalendarIntegrationComponent} from "../google-calendar-integration/google-calendar-integration.component";
 
 @Component({

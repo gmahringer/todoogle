@@ -1,18 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-//import { Calendar } from '@fullcalendar/core';
 import listPlugin from '@fullcalendar/list';
-import {CalendarOptions, FullCalendarModule} from "@fullcalendar/angular";
+import {CalendarOptions} from "@fullcalendar/angular";
 import googleCalendarPlugin from "@fullcalendar/google-calendar";
 import {EditEventComponent} from "../edit-event/edit-event.component";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-//import interactionPlugin from "@fullcalendar/interaction";
-//import dayGridPlugin from "@fullcalendar/daygrid";
-
-/*FullCalendarModule.registerPlugins([ // register FullCalendar plugins
-  //dayGridPlugin,
-  //interactionPlugin,
-  //listPlugin
-]);*/
 
 @Component({
   selector: 'app-listview',

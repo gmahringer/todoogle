@@ -1,12 +1,14 @@
 import {Component, NgZone, OnInit} from '@angular/core';
 import {calendar_v3} from "@googleapis/calendar";
-import {CalendarOptions, FullCalendarModule} from "@fullcalendar/angular";
+import {FullCalendarModule} from "@fullcalendar/angular";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import {AppComponent} from "../app.component";
 import {CalendarviewComponent} from "../calendarview/calendarview.component";
 import {ListviewComponent} from "../listview/listview.component";
 import {AllTodosComponent} from "../all-todos/all-todos.component";
+import {Todo} from "../todo/todo";
+import {SearchResultComponent} from "../search-result/search-result.component";
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -28,6 +30,19 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
   title: String;
   startDate: String;
   dueDate: String;
+
+  static events: Todo[] = [];
+
+  static addEventToList(id, title, start, end,recurring, description,created) {
+    GoogleCalendarIntegrationComponent.events.push({
+      creationDate: created,
+      recurrence: recurring,
+      id: id,
+      title: title,
+      description: description,
+      startDate: start,
+      dueDate: end});
+  }
 
   //todos: any[] = this.listUpcomingEvents(); //!!
   //calendarId: String;
@@ -160,7 +175,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
       resource: event
     });
 
-    request.execute(function(event) {
+    request.execute(function() {
     });
   }
 
@@ -177,7 +192,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
   static deleteAll(groupId){
     let request = gapi.client['calendar'].events.delete({
       calendarId: 'primary',
-      eventId: '9bs45oa91946erh8ohv7o0snrk'
+      eventId: groupId
     });
 
     request.execute(function() {
@@ -224,7 +239,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
 
   listUpcomingEvents() {
     let events;
-    const appendPre = this.appendPre.bind(this);
+    //const appendPre = this.appendPre.bind(this);
     gapi.client['calendar'].events
         .list({
           calendarId: 'primary',
@@ -257,6 +272,12 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
                 else {
                   AllTodosComponent.addEvent(event.id,event.summary, event.start.dateTime, event.end.dateTime,event.recurringEventId);
                 }
+                if(event.start.dateTime == null && event.end.dateTime ==null) {
+                  GoogleCalendarIntegrationComponent.addEventToList(event.id, event.summary, event.start.date, event.end.date,event.recurringEventId,event.description, event.created);
+                }
+                else {
+                  GoogleCalendarIntegrationComponent.addEventToList(event.id, event.summary, event.start.dateTime, event.end.dateTime,event.recurringEventId,event.description, event.created);
+                }
                 let when = event.start.dateTime;
                 if (!when) {
                   when = event.start.date;
@@ -270,6 +291,15 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
         });
   }
 
+  static searchEvents(keyword) {
+    if (GoogleCalendarIntegrationComponent.events.length > 0) {
+      for (const event of GoogleCalendarIntegrationComponent.events) {
+        if (event.title.includes(keyword)) {
+          SearchResultComponent.addEvent(event.id, event.title, event.startDate, event.dueDate,event.recurrence);
+        }
+      }
+    }
+  }
 
   appendPre(text) {
     this.pre += text + '\n';

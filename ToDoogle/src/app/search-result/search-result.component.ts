@@ -1,31 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {CalendarOptions, FullCalendarModule} from "@fullcalendar/angular";
-import listPlugin from '@fullcalendar/list';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Component, OnInit } from '@angular/core';
+import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {EditEventComponent} from "../edit-event/edit-event.component";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction";
-
-FullCalendarModule.registerPlugins([ // register FullCalendar plugins
-  dayGridPlugin,
-  listPlugin,
-  interactionPlugin
-]);
+import {CalendarOptions} from "@fullcalendar/angular";
+import listPlugin from "@fullcalendar/list";
 
 @Component({
-  selector: 'app-all-todos',
-  templateUrl: './all-todos.component.html',
-  styleUrls: ['./all-todos.component.scss']
+  selector: 'app-search-result',
+  templateUrl: './search-result.component.html',
+  styleUrls: ['./search-result.component.scss']
 })
-
-export class AllTodosComponent implements OnInit {
-
-  static displaySearch : boolean;
+export class SearchResultComponent implements OnInit {
 
   modalRef: BsModalRef;
 
   static events = [{}]
+  static keyword =''
 
   static addEvent(id, title, start, end,recurringEventId) {
     let event = {
@@ -35,11 +24,11 @@ export class AllTodosComponent implements OnInit {
       start: start,
       end: end
     }
-    AllTodosComponent.events.push(event)
+    SearchResultComponent.events.push(event)
   }
 
-  displaySearch(){
-    return AllTodosComponent.displaySearch
+  keyword(){
+    return SearchResultComponent.keyword
   }
 
   constructor(private modalService: BsModalService) {}
@@ -59,7 +48,7 @@ export class AllTodosComponent implements OnInit {
     eventClick: this.openModal.bind(this),
     plugins: [listPlugin],
     googleCalendarApiKey: 'AIzaSyAp_Insk0JjH4oxZ4I0-PLIydIno9jZEZ8',
-    events: AllTodosComponent.events
+    events: SearchResultComponent.events
   };
 
 
@@ -69,6 +58,5 @@ export class AllTodosComponent implements OnInit {
   handleDateClick(arg) {
     alert('date click! ' + arg.dateStr);
   }
-
 
 }

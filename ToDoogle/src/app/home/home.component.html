@@ -1,16 +1,20 @@
-<div>
+<div *ngIf="!showSearch()">
     <h1>Overview</h1>
 </div>
-<div class="btn-group">
+<div *ngIf="!showSearch()" class="btn-group">
     <button class="button" (click)="showList()" routerLinkActive="active" style="border-radius: 10px 0 0 10px;">Heute</button>
     <button class="button" (click)="showCalendar()" routerLinkActive="active" style="border-radius: 0 10px 10px 0">Kalenderansicht</button>
 </div>
-<div *ngIf="displayCalendar">
+<div *ngIf="displayCalendar && !showSearch()">
     <app-calendarview></app-calendarview>
 </div>
-<div *ngIf="!displayCalendar">
+<div *ngIf="!displayCalendar && !showSearch()">
     <app-listview></app-listview>
 </div>
+<div *ngIf="showSearch()">
+    <app-search-result></app-search-result>
+</div>
+
 
 
 

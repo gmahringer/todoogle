@@ -1,5 +1,10 @@
-<div>
+
+<div *ngIf="!displaySearch()">
     <h2>Tasks</h2>
 </div>
-<full-calendar [options]="calendarOptions"></full-calendar>
+<div *ngIf="!displaySearch()"><full-calendar [options]="calendarOptions"></full-calendar></div>
+
+<div *ngIf="displaySearch()">
+    <app-search-result></app-search-result>
+</div>
 
