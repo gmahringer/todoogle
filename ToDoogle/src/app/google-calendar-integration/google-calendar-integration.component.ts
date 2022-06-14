@@ -110,7 +110,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
         recurrence: ['RRULE:FREQ=WEEKLY']
       }
     }
-    else if(recurrence.name === 'daily'){
+    else if(recurrence.name === 'täglich'){
       event = {
         summary: title,
         description: description,
@@ -125,7 +125,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
         recurrence: ['RRULE:FREQ=DAILY']
       }
     }
-    else if(recurrence.name === 'monthly'){
+    else if(recurrence.name === 'monatlich'){
       event = {
         summary: title,
         description: description,
@@ -140,7 +140,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
         recurrence: ['RRULE:FREQ=MONTHLY']
       }
     }
-    else if(recurrence.name === 'yearly'){
+    else if(recurrence.name === 'jährlich'){
       event = {
         summary: title,
         description: description,

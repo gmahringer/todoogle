@@ -23,10 +23,10 @@ export class TodoComponent implements OnInit {
 
   recurrence = [
     {id: 1, name: "-"},
-    {id: 2, name: "daily"},
-    {id: 3, name: "weekly"},
-    {id: 4, name: "monthly"},
-    {id: 5, name: "yearly"}
+    {id: 2, name: "täglich"},
+    {id: 3, name: "wöchentlich"},
+    {id: 4, name: "monatlich"},
+    {id: 5, name: "jährlich"}
   ];
 
   public getTodos(): Todo[] {

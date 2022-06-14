@@ -1,15 +1,15 @@
 <html>
 <div class="topnav" *ngIf="isSigned()">
     <div class="links" >
-        <a *ngIf="isSigned()" routerLink="./home" routerLinkActive="active" (click)="noSearch();setHideSearch(false)">Home</a>
-        <a *ngIf="isSigned()" routerLink="./todo" routerLinkActive="active" (click)="setHideSearch(true)">Neues Todo erstellen</a>
+        <a *ngIf="isSigned()" routerLink="./home" routerLinkActive="active" (click)="noSearch();setHideSearch(false)">Übersicht</a>
+        <a *ngIf="isSigned()" routerLink="./todo" routerLinkActive="active" (click)="setHideSearch(true)">Neues Aufgabe erstellen</a>
         <a *ngIf="isSigned()" routerLink="./all-todos" routerLinkActive="active" (click)="noSearch();setHideSearch(false)">Alle Einträge</a>
     </div>
     <div class="logo"><h1 style="font-weight: bold; ">ToDoogle</h1></div>
       <!-- not aligning center TODO -->
     <div class="search" *ngIf="!hideSearch">
         <form (ngSubmit)=" searchEvents($event)">
-            <input name="search" *ngIf="isSigned()" placeholder="Search">
+            <input name="search" *ngIf="isSigned()" placeholder="Suchebegriff eingeben">
         </form>
     </div>
 </div>

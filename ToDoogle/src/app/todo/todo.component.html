@@ -2,22 +2,22 @@
     <link rel="stylesheet" href="./todo.component.scss">
 </head>
 <div class="head">
-    <h1 style="font-size:60px; color: #966969;">Neues Todo erstellen</h1>
+    <h1 style="font-size:60px; color: #966969;">Neue Aufgabe erstellen</h1>
 </div>
 <div class="addItem">
-    <div><label style="color:#966969" for="title">Title: </label></div>
+    <div><label style="color:#966969" for="title">Titel: </label></div>
     <div><input type="text" id="title" [(ngModel)]="title" style="width: 91%"></div>
 
-    <div><label for="date">Date: </label></div>
+    <div><label for="date">Datum: </label></div>
     <div id="date">
         <input class="date" type="datetime-local" [(ngModel)]="startDate">
         -
         <input class="date" type="datetime-local" [(ngModel)]="dueDate">
     </div>
 
-    <div><label  for="desc" style="color:#966969">Description: </label></div>
+    <div><label  for="desc" style="color:#966969">Beschreibung: </label></div>
     <div><textarea id="desc" rows="10" cols="43" [(ngModel)]="description"></textarea></div>
-    <div><label  for="desc" style="color:#966969">Recurrence: </label></div>
+    <div><label  for="desc" style="color:#966969">Wiederholung der Veranstaltung: </label></div>
     <div>
         <select [(ngModel)]="selectedRecurrence">
             <option *ngFor="let r of recurrence" [ngValue]="r">{{r.name}}</option>
@@ -31,7 +31,7 @@
     </span>-->
     <div><p></p></div>
     <div class="btn">
-        <button class="add" (click)="addTodo(title,description, startDate, dueDate, selectedRecurrence)" style="margin-left: 350px">Add Task</button>
+        <button class="add" (click)="addTodo(title,description, startDate, dueDate, selectedRecurrence)" style="margin-left: 350px">Aufgabe erstellen</button>
     </div>
     <br>
     <!--<span class="date" id="date">
@@ -75,7 +75,7 @@
         <input class="date" type="datetime-local" [(ngModel)]="dueDate">
     </span>
 </div>-->
-<div class="added">Newly added:</div>
+<div class="added">Neu hinzugefügt:</div>
 
 <div *ngFor="let item of getTodos()" style="padding:0 10px;margin-bottom:10px;border: solid 1px">
     <div class="displayTodo">
@@ -83,7 +83,7 @@
             <p style="font-size: larger"><b>{{ item.title}}</b></p>
             <p><b>bis: </b>{{ item.dueDate}}</p>
         </div>
-        <b>Description: </b>{{ item.description }}<br>
+        <b>Beschreibung: </b>{{ item.description }}<br>
         <div>
             {{ item.creationDate | date:'dd.MM.YY' }}
         </div>

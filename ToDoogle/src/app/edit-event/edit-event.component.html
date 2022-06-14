@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left">Todo description</h4>
+    <h4 class="modal-title pull-left">Aufgabenbeschreibung</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -11,7 +11,7 @@
     End: {{end}}
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
-    <button (click)="deleteEvent()">Delete event</button>
-    <button *ngIf="recurringEventId != 'undefined' " (click)="deleteAllEvents()">Delete all recurring events</button>
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Schließen</button>
+    <button (click)="deleteEvent()">Veranstaltung löschen</button>
+    <button *ngIf="recurringEventId != 'undefined' " (click)="deleteAllEvents()">Alle wiederkehrenden Veranstaltungen löschen</button>
 </div>
