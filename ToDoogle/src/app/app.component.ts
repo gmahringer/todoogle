@@ -12,9 +12,7 @@ import {AllTodosComponent} from "./all-todos/all-todos.component";
 export class AppComponent implements OnInit {
   title = 'Login';
   hideSearch = false;
-
   user: gapi.auth2.GoogleUser | undefined
-
   pre: ''
   public static isSignedIn : boolean;
 

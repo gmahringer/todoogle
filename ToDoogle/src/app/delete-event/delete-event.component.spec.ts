@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditEventComponent } from './edit-event.component';
+import { DeleteEventComponent } from './delete-event.component';
 
 describe('ChildModalComponent', () => {
-  let component: EditEventComponent;
-  let fixture: ComponentFixture<EditEventComponent>;
+  let component: DeleteEventComponent;
+  let fixture: ComponentFixture<DeleteEventComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditEventComponent ]
+      declarations: [ DeleteEventComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditEventComponent);
+    fixture = TestBed.createComponent(DeleteEventComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

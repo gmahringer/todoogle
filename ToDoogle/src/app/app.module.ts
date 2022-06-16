@@ -10,10 +10,9 @@ import { CalendarviewComponent } from './calendarview/calendarview.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from "@angular/common/http";
 import { ListviewComponent } from './listview/listview.component';
-
 import { AllTodosComponent } from './all-todos/all-todos.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { EditEventComponent } from './edit-event/edit-event.component';
+import { DeleteEventComponent } from './delete-event/delete-event.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 
 @NgModule({
@@ -25,7 +24,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
     HomeComponent,
     ListviewComponent,
     AllTodosComponent,
-    EditEventComponent,
+    DeleteEventComponent,
     SearchResultComponent,
   ],
   imports: [
