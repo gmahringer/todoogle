@@ -23,16 +23,38 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   styleUrls: ['./google-calendar-integration.component.scss']
 })
 
+/**
+ * Class for Google Login and implementation of Google Calendar API to connect the user's Google Calendar with the app
+ */
 export class GoogleCalendarIntegrationComponent implements OnInit {
-  isSignedIn = false;
-  pre = '';
-  description: String;
-  title: String;
-  startDate: String;
-  dueDate: String;
 
+  /**
+   * True if user is logged in, false if user is not logged in
+   */
+  isSignedIn = false;
+
+  // pre = '';
+  // description: String;
+  // title: String;
+  // startDate: String;
+  // dueDate: String;
+
+  /**
+   * Static list for storing all events from the user's Google Calendar.
+   * Necessary for the search function.
+   */
   static events: Todo[] = [];
 
+  /**
+   * Adds event to the static list "events"
+   * @param id - ID of event
+   * @param title - Title of event
+   * @param start - Start date of event
+   * @param end - End date of the event
+   * @param recurring - ID of recurring event if event is recurring
+   * @param description - Description of the event
+   * @param created - Date of the creation of the event
+   */
   static addEventToList(id, title, start, end,recurring, description,created) {
     GoogleCalendarIntegrationComponent.events.push({
       creationDate: created,
@@ -44,11 +66,15 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
       dueDate: end});
   }
 
-  //todos: any[] = this.listUpcomingEvents(); //!!
-  //calendarId: String;
-
   constructor(private zone: NgZone) {}
 
+  /**
+   * Initialisation of Google client to enable login with Google and access to the user's Google Calendar
+   * apiKey - api key of the Google project created in Google Developer Console
+   * clientId - client id of the Google project created in Google Developer Console
+   * discoveryDocs - Discovery document for the Google Calendar API
+   * scope -  to access Google Calendar API
+   */
   initClient() {
     const updateSigninStatus = this.updateSigninStatus.bind(this);
     gapi.client
@@ -73,6 +99,10 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
     this.appendPre(this.calendarId);*/
   }
 
+  /**
+   * Updates the "isSignedIn" field in this class and in AppComponent if user signs in or logs out
+   * @param isSignedIn
+   */
   updateSigninStatus(isSignedIn) {
     console.log('updateSigninStatus', isSignedIn);
     this.isSignedIn = isSignedIn;
@@ -82,20 +112,51 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
     }
   }
 
+  /**
+   * Signs the user in
+   */
   handleAuthClick() {
     gapi.auth2.getAuthInstance().signIn();
   }
 
+  /**
+   * Signs the user out
+   */
   handleSignoutClick() {
     gapi.auth2.getAuthInstance().signOut();
   }
 
+  /**
+   * Loads the Google API
+   */
+  loadGapi() {
+    const script = document.createElement('script');
+    script.src = 'https://apis.google.com/js/api.js';
+    window.document.body.appendChild(script);
+    return new Promise<void>((resolve, reject) => {
+      script.addEventListener('error', (error) => reject(error));
+      script.addEventListener('load', () => resolve());
+    });
+  }
 
+  async ngOnInit() {
+    await this.loadGapi();
+    gapi.load('client:auth2', this.initClient.bind(this));
+  }
+
+  /**
+   * Adds a user-defined event to the user's Google Calendar.
+   * @param title - Title of event
+   * @param description - Description of the event
+   * @param startDate - Start date of event
+   * @param dueDate - End date of the event
+   * @param recurrence - Frequency of recurrence (daily, weekly, monthly, yearly)
+   */
   static addEvent(title,description,startDate,dueDate,recurrence) {
     startDate = startDate.toString() + ':00+02:00'
     dueDate = dueDate.toString() + ':00+02:00'
     let event: calendar_v3.Schema$Event
-    if(recurrence.name === 'weekly'){
+    if(recurrence.name === 'wöchentlich'){
       event = {
         summary: title,
         description: description,
@@ -179,6 +240,10 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
     });
   }
 
+  /**
+   * Deletes an event from the user's Google Calendar
+   * @param id - deletion is based on the ID of the Google Event
+   */
   static deleteEvent(id){
     let request = gapi.client['calendar'].events.delete({
       calendarId: 'primary',
@@ -189,6 +254,10 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
     });
   }
 
+  /**
+   * Deletes all instances of a recurring event from the user's Google Calendar
+   * @param groupId - deletion is based on the recurring ID of the Google Event
+   */
   static deleteAll(groupId){
     let request = gapi.client['calendar'].events.delete({
       calendarId: 'primary',
@@ -237,6 +306,10 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
   //   });
   // }
 
+  /**
+   * Retrieves all events from the user's Google Calendar
+   * and adds them to the different views (calendar view, list view, all events view) and to the class's static list of events.
+   */
   listUpcomingEvents() {
     let events;
     //const appendPre = this.appendPre.bind(this);
@@ -291,6 +364,11 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
         });
   }
 
+  /**
+   * Implements the search function.
+   * If an event's title from the static list of events contains the keyword, the event is added to the SearchResultComponent
+   * @param keyword - Search is made for a keyword defined by the user
+   */
   static searchEvents(keyword) {
     if (GoogleCalendarIntegrationComponent.events.length > 0) {
       for (const event of GoogleCalendarIntegrationComponent.events) {
@@ -301,24 +379,10 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
     }
   }
 
-  appendPre(text) {
-    this.pre += text + '\n';
-  }
+  // appendPre(text) {
+  //   this.pre += text + '\n';
+  // }
 
-  loadGapi() {
-    const script = document.createElement('script');
-    script.src = 'https://apis.google.com/js/api.js';
-    window.document.body.appendChild(script);
-    return new Promise<void>((resolve, reject) => {
-      script.addEventListener('error', (error) => reject(error));
-      script.addEventListener('load', () => resolve());
-    });
-  }
-
-  async ngOnInit() {
-    await this.loadGapi();
-    gapi.load('client:auth2', this.initClient.bind(this));
-  }
 
 
 }

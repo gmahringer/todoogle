@@ -22,10 +22,19 @@ export class AppComponent implements OnInit {
   ngOnInit(): void{
   }
 
+  /**
+   * Returns true if the user is signed in.
+   * Required for displaying different views whose visibility depends on the login status.
+   */
   isSigned(): boolean{
     return AppComponent.isSignedIn
   }
 
+  /**
+   * Calls the searchEvent function in the GoogleCalendarIntegrationComponent.
+   * Hides the "Übersicht" view and the "Alle Einträge" view, so that only the results of the search are visible.
+   * @param event
+   */
   searchEvents(event: any) {
     GoogleCalendarIntegrationComponent.searchEvents(event.target.search.value)
     HomeComponent.displaySearch = true
@@ -33,6 +42,9 @@ export class AppComponent implements OnInit {
     SearchResultComponent.keyword = event.target.search.value
   }
 
+  /**
+   * Hides the results of the search, so that the "Übersicht" view and the "Alle Einträge" view are visible.
+   */
   noSearch(){
     HomeComponent.displaySearch = false
     AllTodosComponent.displaySearch = false
