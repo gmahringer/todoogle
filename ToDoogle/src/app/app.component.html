@@ -8,7 +8,7 @@
     <div class="logo"><h1 style="font-weight: bold; ">ToDoogle</h1></div>
       <!-- not aligning center TODO -->
     <div class="search" *ngIf="!hideSearch">
-        <form (ngSubmit)=" searchEvents($event)">
+        <form (ngSubmit)=" searchEvents($event);setHideSearch(true)">
             <input name="search" *ngIf="isSigned()" placeholder="Suchebegriff eingeben">
         </form>
     </div>

@@ -3,6 +3,7 @@ import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 import {DeleteEventComponent} from "../delete-event/delete-event.component";
 import {CalendarOptions} from "@fullcalendar/angular";
 import listPlugin from "@fullcalendar/list";
+import {GoogleCalendarIntegrationComponent} from "../google-calendar-integration/google-calendar-integration.component";
 
 @Component({
   selector: 'app-search-result',
@@ -88,6 +89,12 @@ export class SearchResultComponent implements OnInit {
     events: SearchResultComponent.events
   };
 
+  newSearch(event: any){
+    GoogleCalendarIntegrationComponent.searchEvents(event.target.search.value)
+    SearchResultComponent.keyword = event.target.search.value
+    this.calendarOptions.events = SearchResultComponent.events;
+
+  }
 
   ngOnInit(): void {
   }

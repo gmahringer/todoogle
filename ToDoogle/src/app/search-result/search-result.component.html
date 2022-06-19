@@ -1,5 +1,11 @@
 <div>
-    <h2>Suchergebnis:</h2>
-    <h2>"{{keyword()}}"</h2>
+    <h2>Suchergebnis: "{{keyword()}}"</h2>
+</div>
+<div class="search">
+    <form (ngSubmit)=" newSearch($event)">
+        <input name="search" placeholder="{{keyword()}}">
+    </form>
 </div>
 <full-calendar [options]="calendarOptions"></full-calendar>
+
+

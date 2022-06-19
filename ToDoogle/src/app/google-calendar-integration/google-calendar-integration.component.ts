@@ -370,6 +370,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
    * @param keyword - Search is made for a keyword defined by the user
    */
   static searchEvents(keyword) {
+    SearchResultComponent.events = [];
     if (GoogleCalendarIntegrationComponent.events.length > 0) {
       for (const event of GoogleCalendarIntegrationComponent.events) {
         if (event.title.includes(keyword)) {
