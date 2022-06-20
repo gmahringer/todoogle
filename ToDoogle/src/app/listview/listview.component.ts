@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import listPlugin from '@fullcalendar/list';
 import {CalendarOptions} from "@fullcalendar/angular";
-import googleCalendarPlugin from "@fullcalendar/google-calendar";
 import {DeleteEventComponent} from "../delete-event/delete-event.component";
 import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
 
@@ -73,7 +72,7 @@ export class ListviewComponent implements OnInit {
     DeleteEventComponent.recurringEventId = arg.event.groupId ;
     DeleteEventComponent.title = arg.event.title ;
     DeleteEventComponent.start = arg.event.start ;
-    DeleteEventComponent.end = arg.event.start ;
+    DeleteEventComponent.end = arg.event.end ;
     this.modalRef = this.modalService.show(DeleteEventComponent);
   }
 

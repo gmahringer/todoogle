@@ -93,7 +93,6 @@ export class SearchResultComponent implements OnInit {
     GoogleCalendarIntegrationComponent.searchEvents(event.target.search.value)
     SearchResultComponent.keyword = event.target.search.value
     this.calendarOptions.events = SearchResultComponent.events;
-
   }
 
   ngOnInit(): void {

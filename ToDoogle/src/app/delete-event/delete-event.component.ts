@@ -37,8 +37,8 @@ export class DeleteEventComponent {
   id = DeleteEventComponent.id;
   recurringEventId = DeleteEventComponent.recurringEventId;
   title = DeleteEventComponent.title;
-  start = DeleteEventComponent.start;
-  end = DeleteEventComponent.end;
+  start = DeleteEventComponent.start.toLocaleString();
+  end = DeleteEventComponent.end.toLocaleString();
 
   /**
    * Calls the GoogleCalendarIntegrationComponent's deleteEvent function
@@ -63,10 +63,5 @@ export class DeleteEventComponent {
     window.location.reload();
   }
 
-  // editEvent(){
-  //   GoogleCalendarIntegrationComponent.editEvent()
-  //   this.bsModalRef.hide()
-  //   window.location.reload();
-  // }
 
 }

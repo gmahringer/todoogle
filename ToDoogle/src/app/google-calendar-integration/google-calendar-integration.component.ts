@@ -33,12 +33,6 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
    */
   isSignedIn = false;
 
-  // pre = '';
-  // description: String;
-  // title: String;
-  // startDate: String;
-  // dueDate: String;
-
   /**
    * Static list for storing all events from the user's Google Calendar.
    * Necessary for the search function.
@@ -79,9 +73,9 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
     const updateSigninStatus = this.updateSigninStatus.bind(this);
     gapi.client
         .init({
-          apiKey: 'AIzaSyAp_Insk0JjH4oxZ4I0-PLIydIno9jZEZ8',
+          apiKey: 'AIzaSyAD7oU4SX_TFkMuyRrslxzmC4d1l4ZOoDw',
           clientId:
-              '507232289390-bbo3sbk9t7op0utpakhfc8juman0g025.apps.googleusercontent.com',
+              '673715156389-deloqkk3nhkoinbaocl80bvt1kkigeit.apps.googleusercontent.com',
           discoveryDocs: [
             'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest',
           ],
@@ -95,8 +89,6 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
             updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
           });
         });
-    /*this.calendarId = gapi.client['calendar'].calendarId;
-    this.appendPre(this.calendarId);*/
   }
 
   /**
@@ -268,51 +260,12 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
     });
   }
 
-
-  // /*sollte static sein*/
-  // getEvent(){
-  //   const appendPre = this.appendPre.bind(this);
-  //   gapi.client['calendar'].events
-  //       .get({
-  //         calendarId: 'primary',
-  //         eventId: 'akrqbtkph6jfv3n95l2nmvsp44'
-  //       })
-  //       .then((response) => {
-  //         this.zone.run(() => {
-  //           let e = response.result;
-  //           appendPre(e.summary);
-  //         });
-  //       });
-  // }
-
-
-  // static editEvent() {
-  //   let event = gapi.client['calendar'].events.get({
-  //     calendarId: 'primary',
-  //     eventId: 'akrqbtkph6jfv3n95l2nmvsp44'
-  //   })
-  //
-  //   event.execute(function() {});
-  //
-  //   event.summary = 'exam change works'
-  //
-  //   let request =  gapi.client['calendar'].events.update({
-  //     calendarId: 'primary',
-  //     eventId: event.id,
-  //     body: event
-  //   })
-  //
-  //   request.execute(function() {
-  //   });
-  // }
-
   /**
    * Retrieves all events from the user's Google Calendar
    * and adds them to the different views (calendar view, list view, all events view) and to the class's static list of events.
    */
   listUpcomingEvents() {
     let events;
-    //const appendPre = this.appendPre.bind(this);
     gapi.client['calendar'].events
         .list({
           calendarId: 'primary',
@@ -323,7 +276,6 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
         .then((response) => {
           this.zone.run(() => {
             events = response.result.items;
-            //appendPre('Upcoming events:');
 
             if (events.length > 0) {
               for (const event of events) {
@@ -355,10 +307,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
                 if (!when) {
                   when = event.start.date;
                 }
-                //appendPre(event.summary + ' (' + when + ')' + 'recID' + event.recurringEventId + ' norm ID' + event.id);
               }
-            } else {
-              //appendPre('No upcoming events found.');
             }
           });
         });
@@ -380,9 +329,6 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
     }
   }
 
-  // appendPre(text) {
-  //   this.pre += text + '\n';
-  // }
 
 
 

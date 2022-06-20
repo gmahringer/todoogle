@@ -85,7 +85,7 @@ export class AllTodosComponent implements OnInit {
     DeleteEventComponent.recurringEventId = arg.event.groupId ;
     DeleteEventComponent.title = arg.event.title ;
     DeleteEventComponent.start = arg.event.start ;
-    DeleteEventComponent.end = arg.event.start ;
+    DeleteEventComponent.end = arg.event.end ;
     this.modalRef = this.modalService.show(DeleteEventComponent);
   }
 
