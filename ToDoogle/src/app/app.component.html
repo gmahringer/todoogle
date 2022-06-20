@@ -1,25 +1,26 @@
 <html>
+<link href='https://fonts.googleapis.com/css?family=Monoton' rel='stylesheet'>
 <div class="topnav" *ngIf="isSigned()">
     <div class="links" >
         <a *ngIf="isSigned()" routerLink="./home" routerLinkActive="active" (click)="noSearch();setHideSearch(false)">Übersicht</a>
-        <a *ngIf="isSigned()" routerLink="./todo" routerLinkActive="active" (click)="setHideSearch(true)">Neues Aufgabe erstellen</a>
+        <a *ngIf="isSigned()" routerLink="./todo" routerLinkActive="active" (click)="setHideSearch(true)">+ neue Aufgabe</a>
         <a *ngIf="isSigned()" routerLink="./all-todos" routerLinkActive="active" (click)="noSearch();setHideSearch(false)">Alle Einträge</a>
     </div>
-    <div class="logo"><h1 style="font-weight: bold; ">ToDoogle</h1></div>
+    <div class="logo"><h1><span style="font-family: 'Monoton'">ToDo</span>ogle</h1></div>
       <!-- not aligning center TODO -->
     <div class="search" *ngIf="!hideSearch">
         <form (ngSubmit)=" searchEvents($event);setHideSearch(true)">
-            <input name="search" *ngIf="isSigned()" placeholder="Suchebegriff eingeben">
+            <input name="search" *ngIf="isSigned()" placeholder=" Suchbegriff eingeben">
         </form>
     </div>
 </div>
 <div class="topnav" *ngIf="!isSigned()">
-    <div class="logo"><h1 style="font-weight: bold;">ToDoogle</h1></div>
+    <div class="logo"><h1><span style="font-family: 'Monoton'">ToDo</span>ogle</h1></div>
 </div>
 <div style="text-align: center" class="welcome" *ngIf="!isSigned()" >
     <pre>Willkommen
  bei
-  ToDoogle!</pre>
+  <span style="font-family: 'Monoton'">ToDo</span>ogle</pre>
 </div>
 <app-google-calendar-integration></app-google-calendar-integration>
 <div *ngIf="isSigned()">
