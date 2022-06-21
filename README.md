@@ -14,3 +14,9 @@ Die Applikation kann mit dem Google Konto getestet werden, das wir für dieses P
 
 Email: todoogle94@gmail.com
 Passwort: todoogletest321
+
+**Refresh-Bugs in der Applikation:**
+- Nach dem Einloggen muss man erst unter Übersicht auf Kalenderansicht klicken, damit die Termine auch in der Heute-Ansicht sichtbar sind, da die Termine aus dem Google-Kalender irgendwie erst nach dem Anklicken auf die Kalenderansicht geladen werden.
+- Nach dem Löschen und Hinzufügen von Events muss man den Browser refreshen, damit die Events aus dem Google Calendar wieder in den unterschiedlichen Fullcalendar Ansichten (Alle Einträge, Kalenderansicht, Heute) angezeigt werden.
+ 
+Leider konnten wir diese Reload Probleme aus Zeitgründen nicht im Code finden und lösen, aber die Funktionen funktionieren trotzdem, es muss nur refreshed werden.
