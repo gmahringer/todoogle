@@ -10,3 +10,6 @@ Danach kann die Applikation immer mit ng serve gestartet werden:
 2. Im Terminal den Befehl **ng serve** ausführen
 3. Zu http://localhost:4200/ navigieren, um die laufende Anwendung zu sehen
 
+Die Applikation kann mit dem Google Konto getestet werden, das wir für dieses Projekt erstellt haben:
+Email: todoogle94@gmail.com
+Passwort: todoogletest321
