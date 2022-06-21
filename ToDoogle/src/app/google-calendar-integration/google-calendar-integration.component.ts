@@ -322,7 +322,7 @@ export class GoogleCalendarIntegrationComponent implements OnInit {
     SearchResultComponent.events = [];
     if (GoogleCalendarIntegrationComponent.events.length > 0) {
       for (const event of GoogleCalendarIntegrationComponent.events) {
-        if (event.title.includes(keyword)) {
+        if (event.title.toUpperCase().includes(keyword.toUpperCase())) {
           SearchResultComponent.addEvent(event.id, event.title, event.startDate, event.dueDate,event.recurrence);
         }
       }
